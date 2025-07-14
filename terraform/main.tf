@@ -141,3 +141,17 @@ resource "aws_instance" "rails_server" {
   }
 }
 
+# Create an Elastic IP for the EC2 instance
+resource "aws_eip" "rails_eip" {
+  domain = "vpc"
+  tags = {
+    Name = "rails-monitoring-eip"
+  }
+}
+
+# Associate the Elastic IP with the EC2 instance
+resource "aws_eip_association" "rails_eip_assoc" {
+  instance_id   = aws_instance.rails_server.id
+  allocation_id = aws_eip.rails_eip.id
+}
+

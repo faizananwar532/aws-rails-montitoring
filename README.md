@@ -64,4 +64,3 @@ To stop all services and remove volumes:
 docker-compose down -v
 ```
 
-for i in {1..30}; do curl http://localhost:3000/ >/dev/null 2>&1; sleep 1; done

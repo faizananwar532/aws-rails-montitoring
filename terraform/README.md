@@ -8,6 +8,7 @@ This directory contains Terraform configuration to deploy a Rails monitoring app
 - Internet Gateway
 - Security Group with ports for SSH, HTTP, HTTPS, Rails (3000), Grafana (3001), and Prometheus (9090)
 - EC2 instance (Ubuntu 22.04 LTS) with Docker installed
+- Elastic IP for static public IP address
 
 ## Prerequisites
 
@@ -45,10 +46,10 @@ terraform plan
 terraform apply
 ```
 
-5. Connect to the EC2 instance using the output IP:
+5. Connect to the EC2 instance using the Elastic IP:
 
 ```bash
-ssh -i /path/to/your-key.pem ubuntu@$(terraform output -raw ec2_public_ip)
+ssh -i /path/to/your-key.pem ubuntu@$(terraform output -raw elastic_ip)
 ```
 
 ## Cleanup
